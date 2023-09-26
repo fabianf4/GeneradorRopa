@@ -3,6 +3,7 @@ import ImageTo64 from './ImageTo64'
 import { useRef, useState } from 'react'
 import { saveAs } from 'file-saver'
 import styles from './home2.module.css'
+import Interfaz from './Interfaz.jpg'
 
 let blob
 export default function Home2() {
@@ -31,11 +32,11 @@ export default function Home2() {
         fetch(url + 'sdapi/v1/img2img', {
             method: 'POST',
             body: JSON.stringify({
-                init_images: [imgToEdit],
+                init_images: [imgToEdit + 'realistic, hd'],
                 mask: myMask,
                 prompt: promps,
-                //width: 512,
-                //height: 512,
+                negative_prompt:
+                    'hand, hands, face, head, foot, skin, naked, nude, nudity',
                 steps: 25,
                 seed: -1,
                 cfg_scale: 7,
@@ -84,6 +85,9 @@ export default function Home2() {
 
     return (
         <div className={styles.container}>
+            <div>
+                <img src={Interfaz} alt="" />
+            </div>
             <input
                 type="text"
                 onChange={(e) => setUrl(e.target.value)}
